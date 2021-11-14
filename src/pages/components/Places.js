@@ -4,7 +4,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 
-export default function App() {
+export default function App(props) {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
         lat: null,
@@ -17,7 +17,9 @@ export default function App() {
         console.log(results);
         setAddress(value);
         setCoordinates(latLng);
-        this.props.onSelect.bind(latLng);
+        props.zone.setLocation(latLng)
+        
+        // aici ar trebui sa se salveze coordonatele zonei alese
   };
 
   return (
@@ -31,7 +33,7 @@ export default function App() {
           <div>
                 <p>Latitude: {coordinates.lat}</p>
                 <p>Longitude: {coordinates.lng}</p>
-
+          
                 <input {...getInputProps({ placeholder: "Set Location" })} />
 
                 <div>
@@ -39,13 +41,13 @@ export default function App() {
 
                 {suggestions.map(suggestion => {
                     const style = {
-                    backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
                     };
 
                     return (
-                    <div {...getSuggestionItemProps(suggestion, { style })}>
-                        {suggestion.description}
-                    </div>
+                      <div {...getSuggestionItemProps(suggestion, { style })}>
+                          {suggestion.description}
+                      </div>
                     );
                 })}
                 </div>
