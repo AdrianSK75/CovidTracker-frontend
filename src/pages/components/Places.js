@@ -14,12 +14,9 @@ export default function App(props) {
   const handleSelect = async value => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
-        console.log(results);
         setAddress(value);
         setCoordinates(latLng);
         props.zone.setLocation(latLng)
-        
-        // aici ar trebui sa se salveze coordonatele zonei alese
   };
 
   return (

@@ -1,10 +1,17 @@
 import {Link} from "react-router-dom";
+import axios from 'axios';
 
-function NavBar() {
+const NavBar = () => {
+    const handleClick = () => {
+        try {
+            axios.get('http://localhost:8000/api/');
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <nav class="nav">
-            <p class="nav-link active">Health Certification</p>
-            <Link to="/" class="nav-link active">New Game</Link>
+            <Link to="/" class="btn btn-info" onClick = {handleClick}>New Game</Link>
         </nav>
     );
 }
