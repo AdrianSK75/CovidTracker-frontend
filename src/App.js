@@ -1,4 +1,4 @@
-import Map from "./pages/Map";
+import Map from "./pages/MapPage/Map";
 import NavBar from "./pages/components/NavBar";
 
 const App = () => {

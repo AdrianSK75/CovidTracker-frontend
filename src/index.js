@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import App from "./App";
-import NewGame from "./pages/NewGame";
+import NewGame from "./pages/NewGamePage/NewGame";
 
 
 const rootElement = document.getElementById("root");
