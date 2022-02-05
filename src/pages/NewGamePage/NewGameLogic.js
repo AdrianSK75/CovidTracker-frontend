@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 export const NewGameLogic = () => {
     const [difficulty, setDifficulty] = React.useState(1);
     const [location, setLocation] = React.useState({
