@@ -8,12 +8,12 @@ export default function App(props) {
           lng: null
     });
     const handleSelect = async value => {
-      const results = await geocodeByAddress(value);
-      const latLng = await getLatLng(results[0]);
-      setAddress(value);
-      setCoordinates(latLng);
-      props.zone.setLocation(latLng);
-  };
+          const results = await geocodeByAddress(value);
+          const latLng = await getLatLng(results[0]);
+          setAddress(value);
+          setCoordinates(latLng);
+          props.zone.setCoordinates({lat: latLng.lat, lng: latLng.lng, address: address});
+    };
   
   return (
     <div>
@@ -26,6 +26,7 @@ export default function App(props) {
           <div>
                 <p>Latitude: {coordinates.lat}</p>
                 <p>Longitude: {coordinates.lng}</p>
+                <p>Address: {address} </p>
           
                 <input {...getInputProps({ placeholder: "Set Location" })} />
 

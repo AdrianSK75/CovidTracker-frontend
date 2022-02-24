@@ -11,7 +11,7 @@ const NavBar = () => {
     }
     return (
         <nav class="nav">
-            <Link to="/register" class="btn btn-info" onClick = {handleClick}>New Game</Link>
+            <Link to="/" class="btn btn-info" onClick = {handleClick}>New Game</Link>
         </nav>
     );
 }

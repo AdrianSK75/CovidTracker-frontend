@@ -3,17 +3,18 @@ import { Select } from './Select';
 import Places from "./Places";
 
 export const Form = () => {
-        const { location, setLocation, handleSubmit } = NewGameLogic();
+        const { coordinates, setCoordinates, handleSubmit } = NewGameLogic();
         return (
             <form onSubmit = {handleSubmit} class = "form-group">
                     <Select />
                     <Places
                         zone = {{
-                            setLocation: setLocation.bind(this),
-                            location: location}}
+                            setCoordinates: setCoordinates.bind(this),
+                            }}
                         ></Places>
-                    <input type ="hidden" name = "latitude" value = {location.lat}/>
-                    <input type ="hidden" name = "longitude" value = {location.lng}/>
+                    <input type ="hidden" name = "latitude" value = {coordinates.lat}/>
+                    <input type ="hidden" name = "longitude" value = {coordinates.lng}/>
+                    <input type ="hidden" name = "address" value = {coordinates.address}/>
                     <button type ="submit" class="btn btn-success">New Game</button>
             </form>
         );
