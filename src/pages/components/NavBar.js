@@ -1,17 +1,17 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import { AuthContext } from "../Authentication/AuthProvider";
+import { useContext } from "react";
 
 const NavBar = () => {
-    const handleClick = () => {
-        try {
-            axios.get('http://localhost:8000/api/');
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    
     return (
         <nav class="nav">
-            <Link to="/" class="btn btn-info" onClick = {handleClick}>New Game</Link>
+            <h5> Hello {user.name} ! ----- </h5>
+            <button type ="submit"  className = "btn btn-danger" onClick = {() => [logout(), navigate('/login')]}>Logout</button>
         </nav>
     );
 }

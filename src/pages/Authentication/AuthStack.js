@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
 
 export const LoginScreen = () => {
-        const { login} = useContext(AuthContext);
+        const { login } = useContext(AuthContext);
         const [name, setName] = useState('');
         const [password, setPassword] = useState('');
         const navigate = useNavigate();
@@ -18,6 +18,7 @@ export const LoginScreen = () => {
             <div class="col-md-auto">
                 <input type = "text" className = "form-control" onChange ={e => setName(e.target.value)} value ={name}/>
                 <input type = "password" className = "form-control" onChange ={e => setPassword(e.target.value)} value ={password} />
+                <Link to = {'/register'}> Do you have an account? </Link>
                 <button type = "submit" onClick = {() => handleSubmit() }> Login </button>
             </div>
         </div>

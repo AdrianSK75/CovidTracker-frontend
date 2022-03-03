@@ -6,28 +6,30 @@ import {
   Marker,
   Circle
 } from "react-google-maps";
+import { Link, useParams } from 'react-router-dom';
 import { MapLogic } from './MapLogic';
-import { Status } from './Status';
+import { Loading } from '../components/Loading';
 
 const Map = () => {
-      const {coordonates, lat, lng} = MapLogic();      
+      const {coordonates, lat, lng, error} = MapLogic();
+      const { id } = useParams();
+      console.log(id);      
       console.log({ lat, lng, tpLat: typeof lat, tpLng: typeof lng });
-      if (coordonates.length === 0) {
-            return <h1> Loading... </h1>
-      }
       return (
             <div>
-            <Status/>
+            <Link to = {(`/group/${id}/lobby`)}>Back to Lobby</Link>
             { lat && lng && 
               <GoogleMap
                   defaultCenter={{lat: parseFloat(lat), lng: parseFloat(lng)}}
                   defaultZoom={4}>      
-                        <Marker
-                        position={{
-                              lat: parseFloat(lat),
-                              lng: parseFloat(lng)
-                        }}
-                        title="Your location"/>
+                        <Circle
+                              defaultCenter={{
+                                    lat: parseFloat(lat),
+                                    lng: parseFloat(lng)
+                              }}
+                              radius={10000}
+                              options={{strokeColor: "#6f74ed"}}
+                        />
                         {coordonates.map(place => {
                                     return (
                                           <Fragment key={place.id}>
@@ -44,6 +46,7 @@ const Map = () => {
                         })}
                   </GoogleMap>
                 }
+                {coordonates.length === 0 || error.length > 0 ? <Loading/> : null}
             </div>
         ); 
 }

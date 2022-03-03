@@ -1,18 +1,22 @@
 import PlacesAutocomplete, {geocodeByAddress, getLatLng } from "react-places-autocomplete";
+import { NewGameLogic } from "./NewGameLogic";
 import React from "react";
 
 export default function App(props) {
+    const {zone : { setLocation, setName }} = props;
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
           lat: null,
           lng: null
     });
-    const handleSelect = async value => {
+    const handleSelect = async value => {  
           const results = await geocodeByAddress(value);
           const latLng = await getLatLng(results[0]);
           setAddress(value);
           setCoordinates(latLng);
-          props.zone.setCoordinates({lat: latLng.lat, lng: latLng.lng, address: address});
+          setLocation({lat: latLng.lat, lng: latLng.lng});
+          setName(value);
+          console.log(coordinates, value);
     };
   
   return (
@@ -28,7 +32,7 @@ export default function App(props) {
                 <p>Longitude: {coordinates.lng}</p>
                 <p>Address: {address} </p>
           
-                <input {...getInputProps({ placeholder: "Set Location" })} />
+                <input {...getInputProps({ placeholder: "Set Location"  })}  />
 
                 <div>
                 {loading ? <div>...loading</div> : null}

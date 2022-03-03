@@ -6,7 +6,7 @@ const App = () => {
         <div>
             <NavBar></NavBar>
             <Map
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbKgCePmcalbV5C8QpcLTzV5Sxgr0mmbA"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyXvDA3765JL4IY3Plxg6awFcgUCHApKM"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `550px` }} />} 
               
