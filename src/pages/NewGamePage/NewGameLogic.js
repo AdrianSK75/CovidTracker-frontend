@@ -20,7 +20,7 @@ export const NewGameLogic = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
         
         axios.post("/group/create", {
-                  difficulty: difficulty,
+                  difficulty: parseInt(difficulty),
                   name: name,
                   latitude: location.lat,
                   longitude: location.lng
